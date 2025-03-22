@@ -1,68 +1,70 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ButtonPressable } from './shared/Button/Button';
+import { Colors, Fonts, Gaps } from './shared/tokens';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.loginContainer}>
-        <Text style={styles.titleStyle}>Одно из самых вкусных кофе в городе!</Text>
-        <Text style={styles.titileSecondaryStyle}>
-          Свежие зёрна, настоящая арабика и бережная обжарка
-        </Text>
-        <Pressable style={styles.loginButton}>
-          <Text style={styles.textLoginButton}>Начать</Text>
-        </Pressable>
-      </View>
-      <StatusBar style="auto" />
-    </View>
+    <ImageBackground
+      source={require('./assets/backgrounds/login-bg/coffee.png')}
+      resizeMode='cover'
+      style={styles.bg}
+      imageStyle={styles.bgImage}
+    >
+      <View style={styles.container}>
+        <View style={styles.loginContainer}>
+          <Text style={styles.titleStyle}>Одно из самых вкусных кофе в городе!</Text>
+          <Text style={styles.titileSecondaryStyle}>
+            Свежие зёрна, настоящая арабика и бережная обжарка
+          </Text>
+          <ButtonPressable text='Начать' />
+        </View>
+        <StatusBar style="auto" />
+      </View >
+    </ImageBackground>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'flex-end',
+
+  },
+  bg: {
+    flex: 1,
+    backgroundColor: Colors.black,
+    justifyContent: 'space-between'
+  },
+  bgImage: {
+    position: 'absolute',
+    width: 'auto',
+    marginBottom: 300
   },
   loginContainer: {
-    gap: 8,
+    gap: Gaps.g8,
     marginBottom: 43,
     width: '80%'
   },
   titleStyle: {
     fontFamily: "Sora",
-    fontSize: 34,
+    fontSize: Fonts.f34,
     fontWeight: "600",
     fontStyle: "normal",
     lineHeight: 34,
     letterSpacing: 1,
     textAlign: "center",
-    color: "#FFFFFF"
+    color: Colors.white
   },
   titileSecondaryStyle: {
     fontFamily: "Sora",
-    fontSize: 14,
+    fontSize: Fonts.f14,
     fontWeight: "400",
     fontStyle: "normal",
     letterSpacing: 1,
     textAlign: "center",
-    color: "#A9A9A9"
+    color: Colors.gray
   },
-  loginButton: {
-    marginTop: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 62,
-    borderRadius: 16,
-    backgroundColor: "#C67C4E"
-  },
-  textLoginButton: {
-    fontFamily: "Sora",
-    fontSize: 16,
-    fontWeight: "600",
-    fontStyle: "normal",
-    lineHeight: 16,
-    color: "#FFFFFF"
-  }
 });
