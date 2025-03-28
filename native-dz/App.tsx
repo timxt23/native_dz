@@ -1,9 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { ButtonPressable } from './shared/Button/Button';
 import { Colors, Fonts, Gaps } from './shared/tokens';
 
 export default function App() {
+  const animatedValue = new Animated.Value(-100)
+  const opacity = animatedValue.interpolate({
+    inputRange: [-100, 0],
+    outputRange: [0, 1]
+  })
+
+  const toEnter = () => {
+    Animated.timing(animatedValue, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true
+    }).start()
+  }
+
   return (
     <ImageBackground
       source={require('./assets/backgrounds/login-bg/coffee.png')}
@@ -13,7 +27,14 @@ export default function App() {
     >
       <View style={styles.container}>
         <View style={styles.loginContainer}>
-          <Text style={styles.titleStyle}>Одно из самых вкусных кофе в городе!</Text>
+          <Animated.Text style={{
+            ...styles.titleStyle, transform: [
+              { translateY: animatedValue }
+            ],
+            opacity: opacity
+          }} onLayout={toEnter}>
+            Одно из самых вкусных кофе в городе!
+          </Animated.Text>
           <Text style={styles.titileSecondaryStyle}>
             Свежие зёрна, настоящая арабика и бережная обжарка
           </Text>
@@ -21,7 +42,7 @@ export default function App() {
         </View>
         <StatusBar style="auto" />
       </View >
-    </ImageBackground>
+    </ImageBackground >
   );
 }
 
@@ -36,7 +57,7 @@ const styles = StyleSheet.create({
   bg: {
     flex: 1,
     backgroundColor: Colors.black,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   bgImage: {
     position: 'absolute',

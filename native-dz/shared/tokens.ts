@@ -2,7 +2,8 @@ export const Colors = {
   black: '#000000',
   white: '#FFFFFF',
   gray: '#A9A9A9',
-  primary: 'C67C4E',
+  primary: '#C67C4E',
+  primaryHover: '#A76237'
 }
 
 export const Fonts = {
