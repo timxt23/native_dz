@@ -1,5 +1,5 @@
 import { Pressable, PressableProps, Text, StyleSheet, Animated, GestureResponderEvent } from 'react-native';
-import { Colors } from '../tokens';
+import { Colors, Fonts } from '../tokens';
 
 export function ButtonPressable({ text, ...props }: PressableProps & { text: string }) {
 	const animatedValue = new Animated.Value(100);
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 		borderRadius: 16,
 	},
 	textButton: {
-		fontFamily: 'Sora',
+		fontFamily: Fonts.regular,
 		fontSize: 16,
 		fontWeight: '600',
 		fontStyle: 'normal',

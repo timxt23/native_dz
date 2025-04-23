@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { Animated, ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { ButtonPressable } from './shared/Button/Button';
-import { Colors, Fonts, Gaps } from './shared/tokens';
+import { ButtonPressable } from '../shared/Button/Button';
+import { Colors, Fonts, Gaps } from '../shared/tokens';
+import { router } from 'expo-router';
 
-export default function App() {
+export default function Index() {
 	const animatedValue = new Animated.Value(-100);
 	const opacity = animatedValue.interpolate({
 		inputRange: [-100, 0],
@@ -20,7 +20,7 @@ export default function App() {
 
 	return (
 		<ImageBackground
-			source={require('./assets/backgrounds/login-bg/coffee.png')}
+			source={require('../assets/backgrounds/login-bg/coffee.png')}
 			resizeMode="cover"
 			style={styles.bg}
 			imageStyle={styles.bgImage}
@@ -38,9 +38,8 @@ export default function App() {
 						Одно из самых вкусных кофе в городе!
 					</Animated.Text>
 					<Text style={styles.titileSecondaryStyle}>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
-					<ButtonPressable text="Начать" />
+					<ButtonPressable text="Начать" onPress={() => router.push('/catalog')} />
 				</View>
-				<StatusBar style="auto" />
 			</View>
 		</ImageBackground>
 	);
@@ -68,17 +67,16 @@ const styles = StyleSheet.create({
 		width: '80%',
 	},
 	titleStyle: {
-		fontFamily: 'Sora',
-		fontSize: Fonts.f34,
+		fontFamily: Fonts.semiBold,
 		fontWeight: '600',
-		fontStyle: 'normal',
+		fontSize: Fonts.f34,
 		lineHeight: 34,
 		letterSpacing: 1,
 		textAlign: 'center',
 		color: Colors.white,
 	},
 	titileSecondaryStyle: {
-		fontFamily: 'Sora',
+		fontFamily: Fonts.regular,
 		fontSize: Fonts.f14,
 		fontWeight: '400',
 		fontStyle: 'normal',

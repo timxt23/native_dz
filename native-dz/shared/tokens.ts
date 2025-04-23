@@ -9,6 +9,8 @@ export const Colors = {
 export const Fonts = {
 	f14: 14,
 	f34: 34,
+	regular: 'SoraRegular',
+	semiBold: 'SoraSemiBold',
 };
 
 export const Gaps = {
